@@ -1,22 +1,25 @@
 
 const consume = async () => {
-    try{
-    const data = await fetch('https://v2.jokeapi.dev/joke/Any');
-    const response = await data.json();
-    const setup = response.setup;
-    const delivery = response.delivery;
-    
-    displayJoke(`${setup} ${delivery}`);
+    try {
+        const data = await fetch('https://v2.jokeapi.dev/joke/Any');
+        const response = await data.json();
+        const setup = response.setup;
+        const delivery = response.delivery;
 
-    } 
-    catch(response){
+        if (typeof setup === 'undefined' || typeof delivery === 'undefined') {
+            alert('Not so fast buddy, i am a lil bit old, would you mind on trying again?')
+        } else {
+            displayJoke(`${setup} ${delivery}`);
+        }
+
+    }
+    catch (response) {
         console.log('Could not get the data')
     }
 
 }
 
 const displayJoke = (content) => {
-
 
     const joke = document.createElement('h1');
     joke.innerText = content;
